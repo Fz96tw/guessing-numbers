@@ -1,8 +1,26 @@
 #!/usr/bin/env bash
 
 MAX_GUESSES=10
-MIN=1
-MAX=100
+
+echo "Select difficulty:"
+echo "  1) Easy   (1–50)"
+echo "  2) Medium (1–100)"
+echo "  3) Hard   (1–200)"
+echo ""
+
+while true; do
+    read -rp "Enter 1, 2, or 3: " choice
+    case "$choice" in
+        1) DIFFICULTY="Easy";   MIN=1; MAX=50;  break ;;
+        2) DIFFICULTY="Medium"; MIN=1; MAX=100; break ;;
+        3) DIFFICULTY="Hard";   MIN=1; MAX=200; break ;;
+        *) echo "Invalid choice. Please enter 1, 2, or 3." ;;
+    esac
+done
+
+echo ""
+echo "Difficulty: $DIFFICULTY | Range: $MIN–$MAX | Guesses: $MAX_GUESSES"
+echo ""
 
 number=$(( RANDOM % MAX + MIN ))
 guesses=0
